@@ -3,7 +3,7 @@ name: release
 on:
   push:
     paths:
-      - "release/*"
+      - "*"
 
 jobs:
   build:
@@ -12,8 +12,9 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: delete any old release
-        run: gh release delete --yes main || true
+      - run: gh release delete --yes main || true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "release/*"
