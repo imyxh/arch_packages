@@ -12,6 +12,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      - run: git lfs pull
       - run: gh release delete --yes main || true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
