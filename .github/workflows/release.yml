@@ -12,6 +12,8 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      - name: delete any old release
+        run: gh release delete --yes main || true
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "release/*"
